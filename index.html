@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Borang Pesanan TikTok Ibu & Ayah</title>
+  <!-- Menggunakan Font Poppins supaya nampak kemas, moden dan jelas -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  
+  <style>
+    /* RESET & BASE STYLES */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      background-color: #f0f4f8;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 16px;
+    }
+
+    /* KOTAK UTAMA (CONTAINER) */
+    .container {
+      background-color: #ffffff;
+      width: 100%;
+      max-width: 480px;
+      border-radius: 28px;
+      padding: 32px 24px;
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+      text-align: center;
+    }
+
+    .avatar-icon {
+      width: 85px;
+      height: 85px;
+      background-color: #e0f2fe;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 42px;
+      margin: 0 auto 16px auto;
+    }
+
+    h1 {
+      color: #0f172a;
+      font-size: 24px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    p.subtitle {
+      color: #475569;
+      font-size: 15px;
+      margin-bottom: 24px;
+      line-height: 1.5;
+    }
+
+    /* FORM STYLES */
+    .form-group {
+      margin-bottom: 20px;
+      text-align: left;
+    }
+
+    label {
+      display: block;
+      font-size: 17px;
+      font-weight: 600;
+      color: #1e293b;
+      margin-bottom: 8px;
+    }
+
+    .input-wrapper {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    input[type="text"], textarea {
+      width: 100%;
+      padding: 16px;
+      font-size: 17px;
+      border: 2.5 solid #cbd5e1;
+      border: 2px solid #cbd5e1;
+      border-radius: 16px;
+      outline: none;
+      transition: all 0.2s ease;
+      background-color: #f8fafc;
+      color: #0f172a;
+    }
+
+    input[type="text"]:focus, textarea:focus {
+      border-color: #2563eb;
+      background-color: #ffffff;
+      box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1);
+    }
+
+    /* BUTANG TAMPAL (AUTO PASTE) */
+    .btn-paste {
+      background-color: #e2e8f0;
+      color: #1e293b;
+      border: none;
+      padding: 12px 16px;
+      font-size: 15px;
+      font-weight: 600;
+      border-radius: 12px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      transition: background-color 0.2s;
+    }
+
+    .btn-paste:active {
+      background-color: #cbd5e1;
+    }
+
+    /* BUTANG HANTAR GERGASI */
+    .btn-submit {
+      width: 100%;
+      background-color: #25d366; /* Warna Hijau WhatsApp */
+      color: #ffffff;
+      border: none;
+      padding: 18px;
+      font-size: 20px;
+      font-weight: 700;
+      border-radius: 18px;
+      cursor: pointer;
+      box-shadow: 0 6px 18px rgba(37, 211, 102, 0.35);
+      margin-top: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      transition: transform 0.1s, background-color 0.2s;
+    }
+
+    .btn-submit:active {
+      transform: scale(0.98);
+      background-color: #1eb956;
+    }
+
+    /* MESEJ KEJAYAAN */
+    .success-card {
+      display: none;
+      background-color: #f0fdf4;
+      border: 2px solid #86efac;
+      padding: 20px;
+      border-radius: 16px;
+      margin-top: 20px;
+    }
+
+    .success-card h2 {
+      color: #166534;
+      font-size: 19px;
+      margin-bottom: 6px;
+    }
+
+    .success-card p {
+      color: #15803d;
+      font-size: 15px;
+    }
+
+    .btn-reset {
+      margin-top: 12px;
+      background: none;
+      border: none;
+      color: #2563eb;
+      font-weight: 600;
+      font-size: 15px;
+      cursor: pointer;
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <div class="avatar-icon">🛍️</div>
+    <h1>Minta Tolong Belikan</h1>
+    <p class="subtitle">Tampal link barang TikTok kat bawah, nanti anak tolong semak & belikan ya!</p>
+
+    <form id="tiktokForm">
+      
+      <!-- 1. Input Link TikTok -->
+      <div class="form-group">
+        <label for="linkInput">1. Link Barang TikTok:</label>
+        <div class="input-wrapper">
+          <input type="text" id="linkInput" placeholder="https://vt.tiktok.com/..." required autocomplete="off">
+          <button type="button" class="btn-paste" onclick="pasteLink()">📋 Tekan Sini Untuk Tampal Link</button>
+        </div>
+      </div>
+
+      <!-- 2. Input Catatan/Nota -->
+      <div class="form-group">
+        <label for="noteInput">2. Catatan (Pilihan):</label>
+        <textarea id="noteInput" rows="2" placeholder="Contoh: Nak warna merah, saiz XL"></textarea>
+      </div>
+
+      <!-- Butang Hantar -->
+      <button type="submit" class="btn-submit">
+        <span>💬 Hantar Mesej WhatsApp</span>
+      </button>
+
+    </form>
+
+    <!-- Mesej Selepas Hantar -->
+    <div class="success-card" id="successMessage">
+      <h2>✅ WhatsApp Telah Dibuka!</h2>
+      <p>Sila tekan butang <b>Send</b> di WhatsApp untuk hantar pautan barang ini pada anak.</p>
+      <button class="btn-reset" onclick="resetForm()">Hantar barang lain pula</button>
+    </div>
+  </div>
+
+  <script>
+    // ==========================================
+    // TETAPAN NOMBOR WHATSAPP KORANG DI SINI!
+    // Gantikan nombor di bawah dengan nombor korang (Mesti mula dengan kod negara 60)
+    // Contoh: '60123456789'
+    // ==========================================
+    const NOMBOR_WHATSAPP_ANAK = '60123456789'; 
+
+    // 1. Fungsi Automatik Tampal Link Dari Clipboard
+    async function pasteLink() {
+      try {
+        const text = await navigator.clipboard.readText();
+        if (text) {
+          document.getElementById('linkInput').value = text;
+        } else {
+          alert("Papan keratan kosong. Sila copy link di TikTok dahulu.");
+        }
+      } catch (err) {
+        alert("Sila tekan lama pada kotak input dan pilih 'Paste' secara manual.");
+      }
+    }
+
+    // 2. Fungsi Hantar Terus ke WhatsApp
+    document.getElementById('tiktokForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      const link = document.getElementById('linkInput').value.trim();
+      const note = document.getElementById('noteInput').value.trim() || "Tiada nota khas.";
+
+      // Format Mesej Mesra Warga Emas & Kemas
+      const mesejText = `Salam anakku, tolong check & belikan barang TikTok ni:\n\n🔗 *Link Barang:* ${link}\n📝 *Nota/Pilihan:* ${note}`;
+
+      // Buka Aplikasi WhatsApp Terus ke Chat Korang
+      const whatsappUrl = `https://wa.me/${NOMBOR_WHATSAPP_ANAK}?text=${encodeURIComponent(mesejText)}`;
+      
+      window.open(whatsappUrl, '_blank');
+
+      // Tunjukkan Mesej Sukses Pada Skrin Laman Web
+      document.getElementById('tiktokForm').style.display = 'none';
+      document.getElementById('successMessage').style.display = 'block';
+    });
+
+    // 3. Fungsi Semula
+    function resetForm() {
+      document.getElementById('tiktokForm').reset();
+      document.getElementById('tiktokForm').style.display = 'block';
+      document.getElementById('successMessage').style.display = 'none';
+    }
+  </script>
+
+</body>
+</html>
